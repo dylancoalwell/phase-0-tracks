@@ -1,32 +1,87 @@
+body{
+ max-width: 960px;
+}
+
+main{
+ width:75%;
+ min-width: 200px;
+ display: inline;
+ float: right;
+ vertical-align: text-top;
+ padding: 2px;
+}
+
 blockquote {
-  border-left: 5px solid blue;
-  padding: 15px;
-  margin-left: 0px;
+ border-left: 5px solid blue;
+ padding: 15px;
+ margin-left: 0px;
 }
 
 cite {
-  display: block;
-  margin-top: 10px;
+ display: block;
+ margin-top: 10px;
 }
 
 #external-links ul {
-  list-style-type: none;
-  padding-left: 0px;
-}
+ list-style-type: none;
+ padding-left: 0px;
+ float: left;
 
+}
+#external-links{
+ width: 15%;
+ min-width: 100px;
+ float: left;
+ vertical-align: text-top;
+ padding: 2px;
+}
 /* you're welcome to edit the
 image, figure, and figcaption CSS if you'd like, 
 but it's optional! */
 img {
-  width: 100%;
+ width: 100%;
 }
 
 figure {
-  margin-left: 0px;
-  margin-right: 0px;
+ margin-left: 0px;
+ margin-right: 0px;
 }
 
 figcaption {
-  font-style: italic;
-  text-align: right;
+ font-style: italic;
+ text-align: right;
+}
+
+@media screen and (max-width: 465px) {
+ main {
+   display: block;
+   float: left;
+  }
+
+  #external-links {
+   display: block;
+   float: left;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 1em;
+  }
+
+  p {
+    font-size: .5em;
+  }
+
+  li {
+    font-size: .5em;
+  }
+
+  figcaption {
+    font-size: .5em;
+  }
+
+  blockquote {
+    font-size: .5em;
+  }
 }
