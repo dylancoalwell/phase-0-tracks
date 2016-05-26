@@ -1,0 +1,42 @@
+* { 
+  font-size: medium;
+}
+
+header {
+  background-color: grey;
+  opacity: .8;
+}
+
+details {
+  font-family: "Lucida Console";
+}
+
+.column-1 {
+  background-color: grey;
+  opacity: .8;
+  position: absolute;
+  width: 47%;
+  float: left;
+}
+
+.column-2 {
+  background-color: grey;
+  opacity: .8;
+  float: right;
+  width: 47%;
+  padding-bottom: 9%;
+}
+
+footer {
+  background-color: grey;
+  opacity: .8;
+  width: 100%;
+  position: relative;
+  clear: both;
+  text-align: center;
+}
+
+body {
+  color: white;
+  background-image: url("http://i.imgur.com/kWGXHCr.jpg")
+}
