@@ -1,3 +1,4 @@
+		ELEVATOR ALGORITHM
 Determine what floor you are one. 
 Determine what floor you need to be on.
 Walk to the elevetor door.
@@ -18,3 +19,50 @@ Continue this until you find the correct button.
 Once you have found the correct button:
 	wait for the elevator doors to open and exit the elevator.
 Stop. You have arrived.
+
+
+		MAKING BREAKFAST CEREAL
+Walk to the first cabinet on the left.
+Open the cabinet door.
+Search cabinet for bowls.
+If there is a bowl:
+	grab it.
+If there is no bowl:
+	Go to the next cabinet.
+If after looking through 4 cabinets there are no bowls:
+	look in the dishwasher.
+If there is no bowl in the dishwasher:
+	Stop. There are no bowls and you can't make cereal.
+Place bowl on counter.
+Go to pantry.
+Look at top shelf.
+If there is a cereal box:
+	Grab the cereal box.
+If there is no cereal box.
+	look at next shelf.
+If there is no cereal after looking at all 5 shelves:
+	Stop. There is not cereal and you can't make cereal.
+Open cereal box and pour cereal into the bowl.
+Go to fridge.
+Open fridge door.
+Search fridge for milk.
+If you find milk:
+	Grab it and place on counter next to the bowl with cereal in it.
+Otherwise:
+	Stop. There is not milk and you can't make cereal.
+Look at expiration date on cereal.
+If the expiration date is after the current date:
+	Pour sufficient amount of milk into the bowl of cereal.
+Otherwise:
+	Stop. The milk has gone bad and you can't make cereal.
+Open the silverware drawer.
+Search the silverware drawer for a spoon.
+If there is a spoon:
+	Use the spoon to eat the cereal.
+Otherwise:
+	Just drink the cereal by picking up the bowl and tipping it into your mouth.
+Finish eating your cereal.
+Place utensils in the sink.
+Place milk in the fridge.
+Place the cereal in the pantry.
+Stop. You have finished eating cereal.
