@@ -27,3 +27,9 @@ else
 	age = age.to_f
 end
 
+puts "\n\nHere is your hamster data: "
+puts "Hamster name: #{name}"
+puts "Noise level: #{volume}"
+puts "Fur color: #{fur_color}"
+puts "Adoptable?: #{is_adoptable}"
+puts "Age: #{age} years"
