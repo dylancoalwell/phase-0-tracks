@@ -1,0 +1,39 @@
+1. What is a variable? Why might a programmer use a variable?
+A variable is a placeholder for information. A programmer would use a variable to store an answer or piece of information for later use.
+
+2. If the value of first_name is "Abraham" and last_name is "Lincoln", explain the order in which Ruby will run the line full_name = first_name + last_name, and what the final result will be.
+Ruby would create the full_name variable and assign "AbrahamLincoln" to it.
+
+3. For each of the following data types, write a short definition and give at least one example of when you might use the data type in a program. (Don't use an example we've already provided.)
+
+string - a group of characters. Typically forming a sentence or phrase. You would use strings when storing someone's name.
+integer - A whole number. You would use an integer when storing someone's age.
+float - A number with a decimal point. You would use a float when storing a number that you need to be more specific, like the temperature.
+nil - nil is used for when there is an absence of information. Nil would be used for when you want to know someone's spouse's name but they don't have a spouse so they leave the field blank.
+boolean - Boolean is true or false. You would use a boolean to store the answer to a yes or no question.
+
+6. What is a method? Why might a programmer choose to use a method?
+A method is a block of code that is given a name and can be called later in a program. A programmer would use a method when they have a block of coded they use often.
+
+7. Define the following terms as they relate to a method. 
+
+return value - return value is the value that the method ends up returning after it is executed.
+side effect - side effect is when a method doesn't return a value but it effects a variable that was already set.
+parameter - is a variable that is used to pass information into a method.
+argument - an argument is the value that is passed through as the parameter.
+implicit return - means you don't have to type return at the end of a method for it to return a value. The return is implied.
+
+8. What are global scope and method scope? How do those scopes impact the availability of data at different points in a program?
+Global scope are variables that you can use anywhere in your code but method scope variables can only be used in the method that they are created. If you try to use a variable that's scope is just in a method, unless you are in that particular method you will get an error. 
+
+9. What is control flow? Why might a programmer choose to use flow control?
+Flow control is the order in which pieces of code or run. A programmer would use flow control to make sure their program runs the way they want it to.
+
+10. Define the following terms as they relate to flow control.
+
+loop - a block of code that loops until a condition is met and it is told to break out.
+if - it's telling the computer that it will run some code if a condition is met.
+else - It tells the computer to run some code if NO condition ends up being met.
+elsif - similar to if but is another condition.
+while - tells a computer that while a condition isn't met, to run a certain block of code.
+until - tells a computer to run a block of code until a condtion is met. 
