@@ -1,13 +1,13 @@
 class Santa
 
-	attr_reader :age, :ethnicity
-	attr_accessor :gender
+	attr_reader :ethnicity
+	attr_accessor :gender, :age
 
 	def initialize(gender, ethnicity)
 		@gender = gender
 		@ethnicity = ethnicity
 		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
-		@age = 0
+		@age = rand(0...140)
 		puts "Initializing Santa instance..."
 	end
 
@@ -34,18 +34,23 @@ class Santa
 
 end
 
-=begin
+
 santas = []
 genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
 ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-genders.length.times do |i|
-  santas << Santa.new(genders[i], ethnicities[i])
+
+100.times do
+  santas << Santa.new(genders.sample, ethnicities.sample)
 end
+
+p santas[90]
+p santas[69]
 
 santas[1].speak
 santas[4].eat_milk_and_cookies("sugar cookie")
-=end
 
+#old driver code
+=begin
 santa = Santa.new("male", "white")
 p santa
 santa.get_mad_at("Dasher")
@@ -55,3 +60,4 @@ santa.gender = "polyamorous"
 p santa.age
 p santa.ethnicity
 p santa
+=end
