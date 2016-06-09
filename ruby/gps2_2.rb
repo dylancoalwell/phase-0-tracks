@@ -78,3 +78,30 @@ p grocery_list
 update_quantity(grocery_list, "carrot", 6)
 p grocery_list
 print_list(grocery_list, "My Grocery List")
+
+=begin
+	
+What did you learn about pseudocode from working on this challenge?
+I learned that pseudocode really is a great way to keep track of what you're trying to do 
+with your program. I also learned that pseudocode can be changed when you change your mind 
+about how you would like to attack a problem.
+
+What are the tradeoffs of using arrays and hashes for this challenge for?
+Array are a little more easy to use in my opiniont but hashes are perfect for this challenge 
+in my opinion because they have the key, value pairs that you need for the quantities.
+
+What does a method return?
+A method can return a lot of things: a hash, an array, a string, a fixnum, a bignum.
+
+What kind of things can you pass into methods as arguments?
+You can pass hashes, arrays, strings, fixnums, or bignums as arguments in methods.
+
+How can you pass information between methods?
+You can pass inormation between methods by having a method retun some information and then having 
+another method take that information in as an argument.
+
+What concepts were solidified in this challenge, and what concepts are still confusing?
+The concepts of moving information between methods were solidified for me but I think I still find 
+the concept of scope in general a little confusing so I will need to study up on that.
+	
+=end
