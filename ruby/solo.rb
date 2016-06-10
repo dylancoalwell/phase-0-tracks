@@ -28,7 +28,6 @@ class Movie
 		@length = 0
 		@location = ""
 		@leading_role = ""
-		puts "Initializing Movie instance..."
 	end
 
 	def play
@@ -36,7 +35,7 @@ class Movie
 	end
 
 	def fast_forward(speed)
-		puts "The movie plays at #{speed.to_s} speed."
+		puts "The movie plays at #{speed} speed."
 	end
 
 	def pause
@@ -49,9 +48,28 @@ class Movie
 
 end
 
-pulp_fiction = Movie.new("Pulp Fiction")
-pulp_fiction.play
-pulp_fiction.fast_forward(2.0)
-pulp_fiction.pause
-pulp_fiction.add_subtitles("French")
-puts "The title of the movie is #{pulp_fiction.title}."
+movies = []
+puts "How many movies would you like to create?"
+x = gets.chomp.to_i
+
+x.times do |i|
+	puts "What is the title of the movie?"
+	title = gets.chomp
+	movies << Movie.new(title)
+	puts "What is the genre?"
+	movies[i].genre = gets.chomp
+	puts "How long is the movie (in minutes)?"
+	movies[i].length = gets.chomp.to_i
+	puts "Where is the movie located?"
+	movies[i].location = gets.chomp
+	puts "Who is the leading actor or actress?"
+	movies[i].leading_role = gets.chomp
+end
+
+movies.each do |i|
+	puts "Title: #{i.title}."
+	puts "Genre: #{i.genre}."
+	puts "Length: #{i.length}."
+	puts "Location: #{i.location}."
+	puts "Leading Actor or Actress: #{i.leading_role}" 
+end
