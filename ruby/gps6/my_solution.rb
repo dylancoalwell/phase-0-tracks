@@ -1,10 +1,11 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [ with: ]
 # We spent [#] hours on this challenge.
 
 # EXPLANATION OF require_relative
-#
+# Require relative lets you include a relative file from within the same directory, "require" requires you to have an absolute path in order to 
+# include a file.
 #
 require_relative 'state_data'
 
