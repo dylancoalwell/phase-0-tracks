@@ -11,3 +11,19 @@ for (var i = 0; i < name.length; i++){
 }
 
 console.log(horses);
+
+function Car(model, color, year) {
+  console.log("new car", this);
+  
+  this.model = model;
+  this.color = color;
+  this.year = year;
+  
+  this.drive = function(speed) { console.log("Car is going " + speed + "."); };
+  console.log("CAR INITIALIZATION COMPLETE");
+}
+
+var newCar = new Car("civic", "red", 1998);
+console.log(newCar);
+
+newCar.drive("25 mph");
