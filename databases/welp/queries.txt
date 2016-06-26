@@ -1,0 +1,17 @@
+####2####
+sqlite> select * from users inner join reviews on users.id = reviews.user_id inner join businesses on reviews.business_id = businesses.id;
+1|Dylan|Coalwell|1|5|Really fast service!|2|1|2|Applebee's
+2|Billy Bob|Thornton|2|1|There was a hair in my food!|3|2|3|T.G.I. Friday's
+3|Michael|Keaton|3|3|It was okay, I guess.|1|3|1|Chili's
+4|Jennifer|Garner|4|4|Wait time was not too bad|3|4|3|T.G.I. Friday's
+
+####3####
+sqlite> select users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment from reviews inner join users on reviews.user_id = users.id inner join businesses on reviews.business_id = businesses.id;
+Dylan|Coalwell|Applebee's|5|Really fast service!
+Billy Bob|Thornton|T.G.I. Friday's|1|There was a hair in my food!
+Michael|Keaton|Chili's|3|It was okay, I guess.
+Jennifer|Garner|T.G.I. Friday's|4|Wait time was not too bad
+
+####4####
+sqlite> select users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment from reviews inner join users on reviews.user_id = users.id inner join businesses on reviews.business_id = businesses.id where businesses.id=1;
+Michael|Keaton|Chili's|3|It was okay, I guess.
