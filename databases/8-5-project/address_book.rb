@@ -115,16 +115,49 @@ def create_new_contact(db)
 	db.execute("INSERT INTO address_book ('name', 'phone_number', 'email', 'address', 'city', 'status', 'social_media_id') VALUES (?, ?, ?, ?, ?, 'true', ?)", [name, phone_number, email, address, city, social_media])
 end
 
+def crud_loop(db)
+	loop do
+		puts "What do you want to do with you address book? (Create, Read, Update, Delete, or Exit)"
+		answer = gets.chomp.downcase
+		if answer == "create"
+			create_new_contact(db)
+		elsif answer == "read"
+			view_existing_contact(db)
+		elsif answer == "update"
+			update_existing_contact(db)
+		elsif answer == "delete"
+			delete_existing_contact(db)
+		elsif answer == "exit"
+			break
+		else
+			puts "I'm not sure what you said. Please repeat."
+		end
+	end
+	puts "Now that you are done, do you want to view your fake contact list, your real contact list, both, or neither? (Please say fake, real, both, or neither)"
+	answer = gets.chomp.downcase
+	if answer == "fake"
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE address_book.status='false'")
+	elsif answer == "real"
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE address_book.status='true'")
+	elsif answer == "both"
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id")
+	elsif answer == "neither"
+		puts "Have a good day!"
+	else
+		puts "I'm not sure what you said..."
+	end
+end
+				
+				
+				
+
 
 ####################### DRIVER CODE ################################################################
 db.execute(create_social_media_table_cmd)
 create_social_media_table(db)
 db.execute(create_address_book_table_cmd)
 import_fake_contacts(db)
-view_existing_contact(db)
-update_existing_contact(db)
-delete_existing_contact(db)
-create_new_contact(db)
+crud_loop(db)
 
 
 # SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id;
