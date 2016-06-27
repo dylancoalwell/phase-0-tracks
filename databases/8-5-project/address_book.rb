@@ -93,6 +93,17 @@ def update_existing_contact(db)
 	end
 end
 
+def delete_existing_contact(db)
+	puts "Would you like to delete an existing contact?"
+	answer = gets.chomp.downcase
+	if answer == "y" || answer == "yes"
+		puts "Please enter the name of the contact you would like to delete."
+		name = gets.chomp
+		db.execute("DELETE FROM address_book WHERE name=?", [name])
+		puts "Contact deleted."
+	end
+end
+
 ####################### DRIVER CODE ################################################################
 db.execute(create_social_media_table_cmd)
 create_social_media_table(db)
@@ -100,6 +111,7 @@ db.execute(create_address_book_table_cmd)
 import_fake_contacts(db)
 view_existing_contact(db)
 update_existing_contact(db)
+delete_existing_contact(db)
 
 
 # SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id;
