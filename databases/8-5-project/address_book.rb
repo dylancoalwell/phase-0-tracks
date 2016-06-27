@@ -9,3 +9,21 @@
 # User should be able to print out their address book in a readable format.
 ########################################################################################################
 
+require 'sqlite3'
+require 'faker'
+
+db = SQLite3::Database.new("address_book.db")
+db.results_as_hash = true
+
+create_table_cmd = <<-SQL
+	CREATE TABLE IF NOT EXISTS address_book(
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(255),
+	phone_number INT,
+	email VARCHAR(255),
+	address VARCHAR(255),
+	city VARCHAR(255)
+	)
+SQL
+
+db.execute(create_table_cmd)
