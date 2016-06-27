@@ -61,17 +61,29 @@ def import_fake_contacts(db)
 	end
 end
 
-# def modify_existing_contact(db)
-# 	puts "Would you like to view an existing contact?(y/n)"
-# 	answer = gets.chomp
-# 	if answer == "y"
-# 		puts ""
+# This method allows the user to view specific contacts
+def view_existing_contact(db)
+	puts "Would you like to view an existing contact?(y/n)"
+	answer = gets.chomp
+	if answer == "y" || "yes"
+		puts "Please enter the name of the contact you would like to view."
+		name = gets.chomp
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
+		# puts "#{address_book['name']} | #{address_book['phone_number']} | #{address_book['email']} | #{address_book['address']}, #{address_book['city']}, #{social_media['social_media']}"
+	else
+		"I guess you don't want to look at anything..."
+	end
+end
+
+def update_existing_contact(db)
+	puts "Would you like"
 
 ####################### DRIVER CODE ################################################################
 db.execute(create_social_media_table_cmd)
 create_social_media_table(db)
 db.execute(create_address_book_table_cmd)
 import_fake_contacts(db)
+view_existing_contact(db)
 
 
-# select address_book.name, address_book.phone_number, address_book.email, address_book.city, social_media.social_media from address_book join social_media on address_book.social_media_id = social_media.id;
+# SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id;
