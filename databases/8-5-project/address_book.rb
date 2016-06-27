@@ -1,13 +1,13 @@
 # Making a fake address book for people who want to create the illusion of having a lot of friends.
 
 ###################### OBJECTIVES ######################################################################
-# The user should be able to provied input. They should be able provide how many fake contacts the want. 
+# The user should be able to provied input. They should be able decide how many fake contacts they want. 
 # They should also be able to C.R.U.D. the database.
 # Define a method that creates an address book database that includes fake name, phone number, email address, street address, city and country for fake contacts.
 # Include FAKER gem for creating fake contact info.
-# Add a foreign key to each contact that signifies if the contact is real or fake.
+# Add a foreign key to each contact that signifies what social media platform they use.
 # Create an interface with which the user can C.R.U.D. the database.
-# User should be able to print out their address book in a readable format.
+# User should be able to print out their address book in a readable format and print the fake and real contact seperately.
 ########################################################################################################
 
 require 'sqlite3'
@@ -16,7 +16,7 @@ require 'faker'
 db = SQLite3::Database.new("address_book.db")
 db.results_as_hash = true
 
-# This is the contact table.
+# This is the contact table. The status variable is false for fake contacts, true for real contacts.
 create_address_book_table_cmd = <<-SQL
 	CREATE TABLE IF NOT EXISTS address_book(
 	id INTEGER PRIMARY KEY,
@@ -63,46 +63,58 @@ end
 
 # This method allows the user to view specific contacts
 def view_existing_contact(db)
-	puts "Would you like to view an existing contact?(y/n)"
-	answer = gets.chomp.downcase
-	if answer == "y" || answer == "yes"
-		puts "Please enter the name of the contact you would like to view."
-		name = gets.chomp
-		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
-	else
-		"I guess you don't want to look at anything..."
-	end
+	puts "Please enter the name of the contact you would like to view."
+	name = gets.chomp
+	puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
 end
 
 # Method for updating an existing contact. Assuming the user doesn't misspell anything.
 def update_existing_contact(db)
-	puts "Would you like to update one of your contacts?(y/n)"
-	answer = gets.chomp.downcase
-	if answer == "y" || answer == "yes"
-		puts "Please enter the name of the contact you would like to update."
-		name = gets.chomp
-		puts "Please enter the field you would like to update."
-		field = gets.chomp
-		puts "Please enter what you would like to update that value to."
-		value = gets.chomp
-		db.execute("UPDATE address_book SET #{field}=? WHERE name=?", [value, name])
-		puts "Here is the contact now."
-		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
-	else
-		"I guess you don't want to look at anything..."
-	end
+	puts "Please enter the name of the contact you would like to update."
+	name = gets.chomp
+	puts "Please enter the field you would like to update."
+	field = gets.chomp
+	puts "Please enter what you would like to update that value to."
+	value = gets.chomp
+	db.execute("UPDATE address_book SET #{field}=? WHERE name=?", [value, name])
+	puts "Here is the contact now."
+	puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
 end
 
+# Method for deleting an existing contact
 def delete_existing_contact(db)
-	puts "Would you like to delete an existing contact?"
-	answer = gets.chomp.downcase
-	if answer == "y" || answer == "yes"
-		puts "Please enter the name of the contact you would like to delete."
-		name = gets.chomp
-		db.execute("DELETE FROM address_book WHERE name=?", [name])
-		puts "Contact deleted."
-	end
+	puts "Please enter the name of the contact you would like to delete."
+	name = gets.chomp
+	db.execute("DELETE FROM address_book WHERE name=?", [name])
+	puts "Contact deleted."
 end
+
+# Method for creating a new, real contact.
+def create_new_contact(db)
+	puts "Please enter the name of the contact."
+	name = gets.chomp
+	puts "Please enter the phone number of the contact."
+	phone_number = gets.chomp
+	puts "Please enter the email of the contact."
+	email = gets.chomp
+	puts "Please enter the address of the contact."
+	address = gets.chomp
+	puts "Please enter the city and country of the contact."
+	city = gets.chomp
+	puts "What social media platform does this person use (Facebook, Twitter, Linkedin)?"
+	social_media = gets.chomp.downcase
+	if social_media == "twitter"
+		social_media = 1
+	elsif social_media == "facebook"
+		social_media = 2
+	elsif social_media == "linkedin"
+		social_media = 3
+	else
+		puts "I don't know what you said."
+	end
+	db.execute("INSERT INTO address_book ('name', 'phone_number', 'email', 'address', 'city', 'status', 'social_media_id') VALUES (?, ?, ?, ?, ?, 'true', ?)", [name, phone_number, email, address, city, social_media])
+end
+
 
 ####################### DRIVER CODE ################################################################
 db.execute(create_social_media_table_cmd)
@@ -112,6 +124,7 @@ import_fake_contacts(db)
 view_existing_contact(db)
 update_existing_contact(db)
 delete_existing_contact(db)
+create_new_contact(db)
 
 
 # SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id;
