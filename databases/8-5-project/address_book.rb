@@ -64,19 +64,34 @@ end
 # This method allows the user to view specific contacts
 def view_existing_contact(db)
 	puts "Would you like to view an existing contact?(y/n)"
-	answer = gets.chomp
-	if answer == "y" || "yes"
+	answer = gets.chomp.downcase
+	if answer == "y" || answer == "yes"
 		puts "Please enter the name of the contact you would like to view."
 		name = gets.chomp
-		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
-		# puts "#{address_book['name']} | #{address_book['phone_number']} | #{address_book['email']} | #{address_book['address']}, #{address_book['city']}, #{social_media['social_media']}"
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
 	else
 		"I guess you don't want to look at anything..."
 	end
 end
 
+# Method for updating an existing contact. Assuming the user doesn't misspell anything.
 def update_existing_contact(db)
-	puts "Would you like"
+	puts "Would you like to update one of your contacts?(y/n)"
+	answer = gets.chomp.downcase
+	if answer == "y" || answer == "yes"
+		puts "Please enter the name of the contact you would like to update."
+		name = gets.chomp
+		puts "Please enter the field you would like to update."
+		field = gets.chomp
+		puts "Please enter what you would like to update that value to."
+		value = gets.chomp
+		db.execute("UPDATE address_book SET #{field}=? WHERE name=?", [value, name])
+		puts "Here is the contact now."
+		puts db.execute("SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media, address_book.status FROM address_book join social_media ON address_book.social_media_id = social_media.id WHERE ?=name", [name])
+	else
+		"I guess you don't want to look at anything..."
+	end
+end
 
 ####################### DRIVER CODE ################################################################
 db.execute(create_social_media_table_cmd)
@@ -84,6 +99,7 @@ create_social_media_table(db)
 db.execute(create_address_book_table_cmd)
 import_fake_contacts(db)
 view_existing_contact(db)
+update_existing_contact(db)
 
 
 # SELECT address_book.name, address_book.phone_number, address_book.email, address_book.address, address_book.city, social_media.social_media FROM address_book join social_media ON address_book.social_media_id = social_media.id;
