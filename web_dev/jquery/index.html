@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Test</title>
+</head>
+<body>
+    <a href="http://google.com/">Click to go to Google</a>
+    <img src="logo.png" alt="logo">
+    <script src="jquery.js"></script>
+    <script>
+    	$(document).ready(function() {
+    		$("a").click(function(event) {
+        		alert("You're staying here forever!!");
+        		event.preventDefault();
+ 				$(this).hide("slow");
+   			});
+   			$("img").click(function() {
+   				$(this).slideUp("slow");
+   			});
+		});
+    </script>
+</body>
+</html>
