@@ -18,3 +18,4 @@ $(document).ready(function() { // code here } runs the code as soon as the docum
 
 add event.preventDefault(); to prevent the default action from happening.
 
+List of effects for jQuery: http://learn.jquery.com/effects/.
